@@ -1,5 +1,5 @@
 {
-    "name": "romanpitak/nginx-config-processor",
+    "name": "wanlxp/nginx-config-processor",
     "type": "library",
     "description": "Nginx configuration files processor.",
     "keywords": [
@@ -17,29 +17,29 @@
         "manager",
         "php"
     ],
-    "homepage": "https://github.com/romanpitak/Nginx-Config-Processor",
+    "homepage": "https://github.com/wanlxp/Nginx-Config-Processor",
     "license": "MIT",
     "authors": [
         {
-            "name": "Roman Piták",
-            "email": "roman@pitak.net",
-            "homepage": "http://pitak.net",
+            "name": "Peter Cui",
+            "email": "kuailedeyv@126.com",
+            "homepage": "http://www.cnblogs.com/wanlxp",
             "role": "Developer"
         }
     ],
     "support": {
         "email": "roman@pitak.net",
-        "issues": "https://github.com/romanpitak/Nginx-Config-Processor/issues",
-        "source": "https://github.com/romanpitak/Nginx-Config-Processor"
+        "issues": "https://github.com/wanlxp/Nginx-Config-Processor/issues",
+        "source": "https://github.com/wanlxp/Nginx-Config-Processor"
     },
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/romanpitak/Nginx-Config-Processor.git"
+            "url": "https://github.com/wanlxp/Nginx-Config-Processor.git"
         }
     ],
     "bugs": {
-        "url": "https://github.com/romanpitak/Nginx-Config-Processor/issues"
+        "url": "https://github.com/wanlxp/Nginx-Config-Processor/issues"
     },
     "require": {
         "php": ">=5.3.3"
@@ -50,7 +50,7 @@
     },
     "autoload": {
         "psr-4": {
-            "RomanPitak\\Nginx\\Config\\": "src/"
+            "wanlxp\\Nginx\\Config\\": "src/"
         }
     }
 }
