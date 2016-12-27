@@ -10,7 +10,7 @@
  *
  */
 
-namespace RomanPitak\Nginx\Config;
+namespace wanlxp\Nginx\Config;
 
 class Directive extends Printable
 {
@@ -81,7 +81,7 @@ class Directive extends Printable
     }
 
     /**
-     * @param \RomanPitak\Nginx\Config\Text $configString
+     * @param \wanlxp\Nginx\Config\Text $configString
      * @return self
      * @throws Exception
      */

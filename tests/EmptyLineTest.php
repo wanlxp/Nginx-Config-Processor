@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace RomanPitak\Nginx\Config;
+namespace wanlxp\Nginx\Config;
 
 class EmptyLineTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class EmptyLineTest extends \PHPUnit_Framework_TestCase
     public function testCanBeConstructed()
     {
         $emptyLine = new EmptyLine();
-        $this->assertInstanceOf('\\RomanPitak\\Nginx\\Config\\EmptyLine', $emptyLine);
+        $this->assertInstanceOf('\\wanlxp\\Nginx\\Config\\EmptyLine', $emptyLine);
         return $emptyLine;
     }
 

@@ -10,7 +10,7 @@
  *
  */
 
-namespace RomanPitak\Nginx\Config;
+namespace wanlxp\Nginx\Config;
 
 class Scope extends Printable
 {
@@ -65,7 +65,7 @@ class Scope extends Printable
     /**
      * Create new Scope from the configuration string.
      *
-     * @param \RomanPitak\Nginx\Config\Text $configString
+     * @param \wanlxp\Nginx\Config\Text $configString
      * @return Scope
      * @throws Exception
      */

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace RomanPitak\Nginx\Config;
+namespace wanlxp\Nginx\Config;
 
 class CommentTest extends \PHPUnit_Framework_TestCase
 {

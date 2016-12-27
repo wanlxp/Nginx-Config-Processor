@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace RomanPitak\Nginx\Config;
+namespace wanlxp\Nginx\Config;
 
 class FileTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Fail on non existing file
      *
-     * @expectedException \RomanPitak\Nginx\Config\Exception
+     * @expectedException \wanlxp\Nginx\Config\Exception
      */
     public function testCannotRead()
     {

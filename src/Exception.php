@@ -10,7 +10,7 @@
  *
  */
 
-namespace RomanPitak\Nginx\Config;
+namespace wanlxp\Nginx\Config;
 
 class Exception extends \Exception
 {
