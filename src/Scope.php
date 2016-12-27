@@ -89,6 +89,12 @@ class Scope extends Printable
                 $scope->addDirective(Directive::fromString($configString));
                 continue;
             }
+			
+			if (('A' <= $char) && ('Z' >= $char)) {
+                $scope->addDirective(Directive::fromString($configString));
+                continue;
+            }
+
 
             if ('}' === $configString->getChar()) {
                 break;
@@ -198,6 +204,49 @@ class Scope extends Printable
 
         return $resultString;
     }
+
+	public function getDirectiveByKey($key) 
+	{
+		foreach($this->directives as $dir) {
+			if ($key == $dir->getName()) {
+				return $dir;
+			}
+		}
+		return null;
+	}
+
+	public function getDirective($key)
+	{
+		$dir = null;
+		$arr = explode('\\', $key);
+		
+		$scope = $this;
+		foreach ($arr as $item) {
+			$dir = $scope->getDirectiveByKey($item);
+			if ($dir == null) {
+				return '';
+			}
+			$scope = $dir->getChildScope();
+		}
+		return $dir;
+	}
+
+	public function getDirectiveValue($path)
+	{
+		$dir = $this->getDirective($path);
+		if ($dir) {
+			return $dir->getValue();
+		}
+		return $dir;
+	}
+	
+	public function setDirectiveValue($path, $value)
+	{
+		$dir = $this->getDirective($path);
+		if ($dir) {
+			$dir->setValue($value);
+		}
+	}
 
     public function __toString()
     {
