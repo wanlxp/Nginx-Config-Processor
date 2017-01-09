@@ -247,6 +247,47 @@ class Scope extends Printable
 			$dir->setValue($value);
 		}
 	}
+    
+    public function delDirectiveValue($path, $value)
+	{
+        $parent;
+        $i;
+
+		$dir = $this->getDirective($path);
+		if ($dir) {
+            $parent = $dir->getParentScope();
+            
+            for ($i = 0; $i < count($dir->parentScope->directives); $i++) {
+                $tmp = $parent->directives[$i];
+                if ($tmp->getValue() == $value) {
+                    array_splice($parent->directives, $i, 1);
+                }
+            }
+		}
+	}
+    
+    public function getDirectiveValues($path)
+	{
+        $ret = array();
+		$arr = explode('\\', $path);
+        $arr = array_reverse($arr);
+
+		$dir = $this->getDirective($path);
+		if ($dir) {
+            $parent = $dir->getParentScope();
+            
+            for ($i = 0; $i < count($parent->directives); $i++) {
+                $tmp = $parent->directives[$i];
+                if ($tmp->getName() == $arr[0]) {
+                    $ret[] = $tmp->getValue();
+                }
+            }
+
+		}
+		return $ret;
+	}
+
+
 
     public function __toString()
     {
