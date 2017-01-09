@@ -252,6 +252,9 @@ class Scope extends Printable
 	{
         $parent;
         $i;
+        $arr = explode('\\', $path);
+        $arr = array_reverse($arr);
+
 
 		$dir = $this->getDirective($path);
 		if ($dir) {
@@ -259,12 +262,33 @@ class Scope extends Printable
             
             for ($i = 0; $i < count($dir->parentScope->directives); $i++) {
                 $tmp = $parent->directives[$i];
-                if ($tmp->getValue() == $value) {
+                if ($tmp->getName() == $arr[0] && $tmp->getValue() == $value) {
                     array_splice($parent->directives, $i, 1);
                 }
             }
 		}
 	}
+    
+    public function delDirectiveValues($path, $value)
+	{
+        $parent;
+        $i;
+        $arr = explode('\\', $path);
+        $arr = array_reverse($arr);
+
+		$dir = $this->getDirective($path);
+		if ($dir) {
+            $parent = $dir->getParentScope();
+            
+            for ($i = 0; $i < count($dir->parentScope->directives); $i++) {
+                $tmp = $parent->directives[$i];
+                if ($tmp->getName() == $arr[0]) {
+                    array_splice($parent->directives, $i, 1);
+                }
+            }
+		}
+	}
+
     
     public function getDirectiveValues($path)
 	{
