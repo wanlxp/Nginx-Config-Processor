@@ -269,7 +269,7 @@ class Scope extends Printable
 		}
 	}
     
-    public function delDirectiveValues($path, $value)
+    public function delDirectiveValues($path)
 	{
         $parent;
         $i;
