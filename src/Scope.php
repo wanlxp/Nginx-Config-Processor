@@ -163,6 +163,16 @@ class Scope extends Printable
     {
         $this->printables[] = $printable;
     }
+    
+    private function delPrintable(Printable $printable)
+    {
+        for ($i = 0; $i < count($this->printables); $i++) {
+            if ($printable == $this->printables[$i]) {
+                array_splice($this->printables, $i, 1);
+            }
+        }
+    }
+
 
     /**
      * Set parent directive for this Scope.
@@ -248,6 +258,15 @@ class Scope extends Printable
 		}
 	}
     
+    public function addDirectiveValue($path, $name, $value)
+	{  
+		$dir = $this->getDirective($path);
+		if ($dir) {
+            $dir->getChildScope()->addDirective(Directive::create($name, $value));
+		}
+	}
+
+    
     public function delDirectiveValue($path, $value)
 	{
         $parent;
@@ -260,10 +279,12 @@ class Scope extends Printable
 		if ($dir) {
             $parent = $dir->getParentScope();
             
-            for ($i = 0; $i < count($dir->parentScope->directives); $i++) {
+            for ($i = 0; $i < count($parent->directives); $i++) {
                 $tmp = $parent->directives[$i];
                 if ($tmp->getName() == $arr[0] && $tmp->getValue() == $value) {
+                    $parent->delPrintable($parent->directives[$i]);
                     array_splice($parent->directives, $i, 1);
+                    return;
                 }
             }
 		}
@@ -271,21 +292,15 @@ class Scope extends Printable
     
     public function delDirectiveValues($path)
 	{
-        $parent;
-        $i;
         $arr = explode('\\', $path);
         $arr = array_reverse($arr);
 
 		$dir = $this->getDirective($path);
 		if ($dir) {
             $parent = $dir->getParentScope();
-            
-            for ($i = 0; $i < count($dir->parentScope->directives); $i++) {
-                $tmp = $parent->directives[$i];
-                if ($tmp->getName() == $arr[0]) {
-                    array_splice($parent->directives, $i, 1);
-                }
-            }
+
+            $parent->childScope = array();
+            $parent->printables = array();
 		}
 	}
 
