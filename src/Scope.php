@@ -225,6 +225,23 @@ class Scope extends Printable
 		return null;
 	}
 
+    /**
+     * returns all directives searched by key as an array, for example return all server
+     *
+     * @param string $key
+     * @return array
+     */
+	public function getAllDirectivesByKey($key) 
+	{
+        $reusult = array();
+		foreach($this->directives as $dir) {
+			if ($key == $dir->getName()) {
+				$reusult[] = $dir;
+			}
+		}
+		return $reusult;
+	}
+
 	public function getDirective($key)
 	{
 		$dir = null;
