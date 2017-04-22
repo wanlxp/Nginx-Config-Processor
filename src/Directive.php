@@ -87,13 +87,26 @@ class Directive extends Printable
      */
     public static function fromString(Text $configString)
     {
+        $quotation = false;
         $text = '';
         while (false === $configString->eof()) {
             $char = $configString->getChar();
-            if ('{' === $char) {
+            if (!$quotation && ('"' === $char || "'" === $char)) {
+                $quotation = $char;
+                $text .= $char;
+                $configString->inc();
+                continue;
+            }
+            if ($quotation && $quotation === $char) {
+                $quotation = false;
+                $text .= $char;
+                $configString->inc();
+                continue;
+            }
+            if ('{' === $char && !$quotation) {
                 return self::newDirectiveWithScope($text, $configString);
             }
-            if (';' === $char) {
+            if (';' === $char && !$quotation) {
                 return self::newDirectiveWithoutScope($text, $configString);
             }
             $text .= $char;
@@ -171,7 +184,7 @@ class Directive extends Printable
     }
 
     private static function checkKeyValue($text) {
-        if (1 === preg_match('#^([a-zA-Z0-9._/+-]*)\s+([^;{]+)$#', $text, $matches)) {
+        if (1 === preg_match('#^([a-zA-Z0-9._/+-]*)\s+(.+)$#s', $text, $matches)) {
             return array($matches[1], rtrim($matches[2]));
         }
         return false;
